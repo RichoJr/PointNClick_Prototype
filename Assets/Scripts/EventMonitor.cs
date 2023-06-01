@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class EventMonitor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TriggerEntered trigEnter;
+    public bool humanEvent;
+    public bool dogEvent;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        EventChecker();
+    }
+    public void EventChecker()
+    {
+        if(trigEnter.characterEvent == 1)
+        {
+            humanEvent = true;
+            dogEvent = false;
+        }
+        if (trigEnter.characterEvent == 2)
+        {
+            dogEvent = true;
+            humanEvent = false;
+        }
+        if (trigEnter.characterEvent == 3)
+        {
+            humanEvent = true;
+            dogEvent = true;
+        }
     }
 }

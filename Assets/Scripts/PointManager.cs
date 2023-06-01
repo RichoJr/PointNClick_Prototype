@@ -11,9 +11,12 @@ public class PointManager : MonoBehaviour
     public int humanAP = 5;
     public int dogAP = 5;
     public bool eventStarted;
+    bool eventSuccessful;
 
     public GameObject human;
     public GameObject dog;
+
+    public EventMonitor eventMon;
 
     // Start is called before the first frame update
     void Start()
@@ -54,18 +57,79 @@ public class PointManager : MonoBehaviour
             Debug.Log("Game Over");
         }
 
-        ActionPoints();
+        //ActionPoints();
     }
 
-    public void ActionPoints()
-    {
-        if(humanAP > 0)
-        {
-            
-        }
-        if (dogAP > 0)
-        {
-            
-        }
-    }
+    //public void ActionPoints()
+    //{
+    //    if(humanAP > 0)
+    //    {
+    //        eventStarted = eventMon.humanEvent;
+    //        if(eventStarted == true)
+    //        {
+    //            humanAP--;
+    //            if(eventSuccessful == true)
+    //            {
+    //                /* Display UI for success*/
+    //                Debug.Log("Event Successful");
+    //                humanLP = humanLP + 10;
+    //                if(/*Action Points Given*/ == true)
+    //                {
+    //                    humanAP++;
+    //                }
+    //            }
+    //            else
+    //            {
+    //                /* Display UI for unsuccessful attempt*/
+    //                Debug.Log("Event Unsuccessful");
+    //            }
+    //        }
+    //    }
+    //    if (dogAP > 0)
+    //    {
+    //        eventStarted = eventMon.dogEvent;
+    //        if (eventStarted == true)
+    //        {
+    //            dogAP--;
+    //            if (eventSuccessful == true)
+    //            {
+    //                /* Display UI for success*/
+    //                Debug.Log("Event Successful");
+    //                dogLP = dogLP + 10;
+    //                if (/*Action Points Given*/ == true)
+    //                {
+    //                    dogAP++;
+    //                }
+    //            }
+    //            else
+    //            {
+    //                /* Display UI for unsuccessful attempt*/
+    //                Debug.Log("Event Unsuccessful");
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        //Disable Events
+    //        CharacterRest();
+    //    }
+    //}
+    //
+    //public void CharacterRest()
+    //{
+    //    if(/* human is at home */)
+    //    {
+    //        if(humanAP < 5)
+    //        {
+    //            humanAP = 5;
+    //        }
+    //    }
+    //    if (/* dog is at home */)
+    //    {
+    //        if (dogAP < 5)
+    //        {
+    //            dogAP = 5;
+    //        }
+    //    }
+    //}
 }

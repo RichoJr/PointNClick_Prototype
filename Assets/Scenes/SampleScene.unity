@@ -7792,7 +7792,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf9b73b759cd9a41a935593a7280dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerID: 2
+  triggerID: 0
+  amountCheck: 0
+  humanNav: {fileID: 1267558490}
+  dogNav: {fileID: 292304693}
 --- !u!1 &2112292819
 GameObject:
   m_ObjectHideFlags: 0

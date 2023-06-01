@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TriggerEntered : MonoBehaviour
 {
     public int triggerID;
     public int amountCheck = 0;
+    public int characterEvent;
     bool humanEntered = false;
     bool dogEntered = false;
+
+    public NavMeshAgent humanNav;
+    public NavMeshAgent dogNav;
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Entered trigger");
@@ -16,6 +22,7 @@ public class TriggerEntered : MonoBehaviour
             if(other.gameObject.CompareTag("Human"))
             {
                 Debug.Log("Human has entered zone");
+                characterEvent = 1;
             }
         }
         if (triggerID == 1)
@@ -23,6 +30,7 @@ public class TriggerEntered : MonoBehaviour
             if (other.gameObject.CompareTag("Dog"))
             {
                 Debug.Log("Dog has entered zone");
+                characterEvent = 2;
             }
         }
         if (triggerID == 2)
@@ -44,7 +52,14 @@ public class TriggerEntered : MonoBehaviour
                 humanEntered = false;
                 dogEntered = false;
                 amountCheck = 0;
+                characterEvent = 3;
             }
         }
+    }
+
+    private void OnTriggerExit()
+    {
+        characterEvent = 0;
+        Debug.Log(characterEvent);
     }
 }
