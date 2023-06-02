@@ -1,33 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class EventMonitor : MonoBehaviour
 {
-    public TriggerEntered trigEnter;
+    TriggerEntered trigEnter;
+    public int eventCounter = 0;
     public bool humanEvent;
     public bool dogEvent;
 
-    void Update()
+    [Header("Events")]
+    public List<GameEvents> HumanEvents = new List<GameEvents>();
+    public List<GameEvents> DogEvents = new List<GameEvents>();
+    public List<GameEvents> MultiEvents = new List<GameEvents>();
+    public List<GameEvents> ActionPointEvents = new List<GameEvents>();
+
+    private void Update()
     {
         EventChecker();
     }
     public void EventChecker()
     {
-        if(trigEnter.characterEvent == 1)
+        //eventCounter = trigEnter.characterEvent;
+        
+        if (eventCounter == 1)
         {
             humanEvent = true;
             dogEvent = false;
+            for (int i = 0; i < HumanEvents.Count; i++)
+            {
+                if (HumanEvents[i] == trigEnter.gameEvent)
+                {
+                    Debug.Log(trigEnter.gameEvent);
+                }
+            }
         }
-        if (trigEnter.characterEvent == 2)
+        else if (eventCounter == 2)
         {
             dogEvent = true;
             humanEvent = false;
         }
-        if (trigEnter.characterEvent == 3)
+        else if (eventCounter == 3)
         {
             humanEvent = true;
             dogEvent = true;
+        }
+        else
+        {
+            humanEvent = false;
+            dogEvent = false;
+            Debug.Log("Nothing");
         }
     }
 }

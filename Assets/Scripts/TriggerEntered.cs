@@ -7,12 +7,17 @@ public class TriggerEntered : MonoBehaviour
 {
     public int triggerID;
     public int amountCheck = 0;
-    public int characterEvent;
+    public int characterEvent = 0;
     bool humanEntered = false;
     bool dogEntered = false;
 
     public NavMeshAgent humanNav;
     public NavMeshAgent dogNav;
+
+    [Header("Event")]
+    public GameEvents gameEvent;
+
+    EventMonitor eventMon;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +28,7 @@ public class TriggerEntered : MonoBehaviour
             {
                 Debug.Log("Human has entered zone");
                 characterEvent = 1;
+                StartEvent();
             }
         }
         if (triggerID == 1)
@@ -31,6 +37,8 @@ public class TriggerEntered : MonoBehaviour
             {
                 Debug.Log("Dog has entered zone");
                 characterEvent = 2;
+                StartEvent();
+
             }
         }
         if (triggerID == 2)
@@ -53,13 +61,21 @@ public class TriggerEntered : MonoBehaviour
                 dogEntered = false;
                 amountCheck = 0;
                 characterEvent = 3;
+                StartEvent();
             }
         }
+        //eventMon.eventCounter = characterEvent;
+        Debug.Log("characterE Event is : " + characterEvent);
     }
 
     private void OnTriggerExit()
     {
-        characterEvent = 0;
+        //characterEvent = 0;
         Debug.Log(characterEvent);
+    }
+    
+    public void StartEvent()
+    {
+        gameEvent.Raise(this, null);
     }
 }
