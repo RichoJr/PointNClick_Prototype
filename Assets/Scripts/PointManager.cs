@@ -6,16 +6,29 @@ using UnityEngine.UI;
 
 public class PointManager : MonoBehaviour
 {
-    public int humanLP = 100;
-    public int dogLP = 100;
-    public int humanAP = 5;
-    public int dogAP = 5;
+    public float humanLP = 100;
+    public float dogLP = 100;
+    public float humanAP = 5;
+    public float dogAP = 5;
+    public float result;
    
     bool eventSuccessful = true;
-    bool eventActive;
+    bool humanAlive = true;
+    bool dogAlive = true;
 
     public GameObject human;
     public GameObject dog;
+
+    public Text eventResultText;
+    public Text humanLPText;
+    public Text dogLPText;
+    public Text humanApText;
+    public Text dogAPText;
+
+    public Slider humanLPSlider;
+    public Slider dogLPSlider;
+    public Slider humanAPSlider;
+    public Slider dogAPSlider;
 
     public EventMonitor eventMon;
     // Start is called before the first frame update
@@ -27,6 +40,7 @@ public class PointManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ChangeUI();
         LifePoints();
     }
 
@@ -46,12 +60,14 @@ public class PointManager : MonoBehaviour
         if(humanLP <= 0)
         {
             human.SetActive(false);
+            humanAlive = false;
         }
         if (dogLP <= 0)
         {
             dog.SetActive(false);
+            dogAlive = false;
         }
-        if(human.active == false && dog.active == false)
+        if(humanAlive == false && dogAlive == false)
         {
             Debug.Log("Game Over");
         }
@@ -66,8 +82,7 @@ public class PointManager : MonoBehaviour
             humanAP--;
             if (eventSuccessful == true)
             {
-                /* Display UI for success*/
-                Debug.Log("Event Successful");
+                eventResultText.text = "Event Successful";
                 humanLP = humanLP + 10;
                 // if(/*Action Points Given*/ == true)
                 // {
@@ -76,34 +91,28 @@ public class PointManager : MonoBehaviour
             }
             else
             {
-                /* Display UI for unsuccessful attempt*/
-                //Debug.Log("Event Unsuccessful");
+                eventResultText.text = "Event Unsuccessful";
             }
             eventMon.humanEvent = false;
         }
-        //if (dogAP > 0)
-        //{
-        //    eventStarted = eventMon.dogEvent;
-        //    if (eventStarted == true)
-        //    {
-        //        dogAP--;
-        //        if (eventSuccessful == true)
-        //        {
-        //            /* Display UI for success*/
-        //            Debug.Log("Event Successful");
-        //            dogLP = dogLP + 10;
-        //            if (/*Action Points Given*/ == true)
-        //            {
-        //                dogAP++;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            /* Display UI for unsuccessful attempt*/
-        //            Debug.Log("Event Unsuccessful");
-        //        }
-        //    }
-        //}
+        if (dogAP > 0 && eventMon.dogEvent == true)
+        {
+            dogAP--;
+            if (eventSuccessful == true)
+            {
+                eventResultText.text = "Event Successful";
+                dogLP = dogLP + 10;
+                //if (/*Action Points Given*/ == true)
+                //{
+                //    dogAP++;
+                //}
+            }
+            else
+            {
+                eventResultText.text = "Event Unsuccessful";
+            }
+            eventMon.dogEvent = false;
+        }
         //else
         //{
         //    //Disable Events
@@ -129,4 +138,16 @@ public class PointManager : MonoBehaviour
    //     }
    // }
 
+    public void ChangeUI()
+    {
+        humanLPSlider.value = humanLP / 100;
+        humanLPText.text = humanLP.ToString() + "/100";
+        dogLPSlider.value = dogLP / 100;
+        dogLPText.text = dogLP.ToString() + "/100";
+
+        humanAPSlider.value = humanAP;
+        humanApText.text = humanAP.ToString() + "/5";
+        dogAPSlider.value = dogAP;
+        dogAPText.text = dogAP.ToString() + "/5";
+    }
 }

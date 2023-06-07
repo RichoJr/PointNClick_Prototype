@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventMonitor : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EventMonitor : MonoBehaviour
     public bool humanEvent;
     public bool dogEvent;
     public bool cantPlay;
+
+    public Text eventNameText;
 
     [Header("Triggers")]
     public List<TriggerEntered> eventTriggers = new List<TriggerEntered>();
@@ -36,6 +39,7 @@ public class EventMonitor : MonoBehaviour
                         humanEvent = true;
                         dogEvent = false;
                         cantPlay = false;
+                        eventNameText.text = trigEnter.gameEvent.name;
                     }
                     else
                     {
@@ -53,6 +57,7 @@ public class EventMonitor : MonoBehaviour
                         dogEvent = true;
                         humanEvent = false;
                         cantPlay = false;
+                        eventNameText.text = trigEnter.gameEvent.name;
                     }
                     else
                     {
@@ -70,6 +75,7 @@ public class EventMonitor : MonoBehaviour
                         humanEvent = true;
                         dogEvent = true;
                         cantPlay = false;
+                        eventNameText.text = trigEnter.gameEvent.name;
                     }
                     else
                     {

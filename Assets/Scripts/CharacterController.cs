@@ -24,7 +24,7 @@ public class CharacterController : MonoBehaviour
     public GameObject humanUI;
     public GameObject dogUI;
 
-    
+    public Camera cam;
 
 
     void Update()
@@ -84,6 +84,10 @@ public class CharacterController : MonoBehaviour
                     }
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Debug.Log("Right Click");
         }
     }
 }
