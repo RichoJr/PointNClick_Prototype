@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +18,7 @@ public class TriggerEntered : MonoBehaviour
     [Header("Event")]
     public GameEvents gameEvent;
 
-    EventMonitor eventMon;
+    public EventMonitor eventMon;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -65,7 +66,7 @@ public class TriggerEntered : MonoBehaviour
             }
         }
         //eventMon.eventCounter = characterEvent;
-        Debug.Log("characterE Event is : " + characterEvent);
+        Debug.Log("character Event is : " + characterEvent);
     }
 
     private void OnTriggerExit()
@@ -76,6 +77,11 @@ public class TriggerEntered : MonoBehaviour
     
     public void StartEvent()
     {
+        eventMon.EventChecker(this);
+        if (eventMon.cantPlay == true)
+        {
+            return;
+        }
         gameEvent.Raise(this, null);
     }
 }

@@ -11,20 +11,17 @@ public class PointManager : MonoBehaviour
     public int humanAP = 5;
     public int dogAP = 5;
    
-    bool eventSuccessful;
+    bool eventSuccessful = true;
     bool eventActive;
 
     public GameObject human;
     public GameObject dog;
 
     public EventMonitor eventMon;
-    EventListener gameEvent;
-
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(PointTimer());
-        
     }
 
     // Update is called once per frame
@@ -37,7 +34,6 @@ public class PointManager : MonoBehaviour
     {
         humanLP = humanLP - 2;
         dogLP = dogLP - 2;
-        Debug.Log(humanLP);
         yield return new WaitForSeconds(3f);
         if(humanLP > 0 || dogLP > 0)
         {
@@ -65,7 +61,7 @@ public class PointManager : MonoBehaviour
 
     public void ActionPoints()
     {
-        if (humanAP > 0)
+        if (humanAP > 0 && eventMon.humanEvent == true)
         {
             humanAP--;
             if (eventSuccessful == true)
@@ -83,6 +79,7 @@ public class PointManager : MonoBehaviour
                 /* Display UI for unsuccessful attempt*/
                 //Debug.Log("Event Unsuccessful");
             }
+            eventMon.humanEvent = false;
         }
         //if (dogAP > 0)
         //{

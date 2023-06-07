@@ -1085,6 +1085,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2100817337}
+  - {fileID: 1879480636}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -6235,7 +6236,7 @@ MonoBehaviour:
   dogAP: 5
   human: {fileID: 1267558485}
   dog: {fileID: 292304688}
-  eventMon: {fileID: 0}
+  eventMon: {fileID: 1581305817}
 --- !u!4 &1581305816
 Transform:
   m_ObjectHideFlags: 0
@@ -6266,7 +6267,10 @@ MonoBehaviour:
   eventCounter: 0
   humanEvent: 0
   dogEvent: 0
-  eventBegan: 0
+  cantPlay: 0
+  eventTriggers:
+  - {fileID: 2100817339}
+  - {fileID: 1879480634}
   HumanEvents:
   - {fileID: 11400000, guid: ffb0be19dde50124eaa71e1bf16b8338, type: 2}
   DogEvents:
@@ -6275,7 +6279,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0df4adc28e1084d4dacccfed3fe95deb, type: 2}
   ActionPointEvents:
   - {fileID: 11400000, guid: a3d526228630ab8428f93f26649c5570, type: 2}
-  pManager: {fileID: 1581305814}
 --- !u!1 &1586738525
 GameObject:
   m_ObjectHideFlags: 0
@@ -7277,6 +7280,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861912476}
   m_CullTransparentMesh: 1
+--- !u!1 &1879480633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879480636}
+  - component: {fileID: 1879480635}
+  - component: {fileID: 1879480634}
+  m_Layer: 0
+  m_Name: Event1Trigger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1879480634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879480633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf9b73b759cd9a41a935593a7280dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerID: 1
+  amountCheck: 0
+  characterEvent: 0
+  humanNav: {fileID: 1267558490}
+  dogNav: {fileID: 292304693}
+  gameEvent: {fileID: 11400000, guid: ffb0be19dde50124eaa71e1bf16b8338, type: 2}
+  eventMon: {fileID: 1581305817}
+--- !u!65 &1879480635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879480633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6968231, y: 1, z: 2.3419418}
+  m_Center: {x: 0.0033550262, y: 0, z: -0.064968586}
+--- !u!4 &1879480636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879480633}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -13.8, y: -0.9, z: 4.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 307027786}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1888328763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7870,6 +7938,7 @@ MonoBehaviour:
   humanNav: {fileID: 1267558490}
   dogNav: {fileID: 292304693}
   gameEvent: {fileID: 11400000, guid: ffb0be19dde50124eaa71e1bf16b8338, type: 2}
+  eventMon: {fileID: 1581305817}
 --- !u!1 &2112292819
 GameObject:
   m_ObjectHideFlags: 0

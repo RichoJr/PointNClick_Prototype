@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Human
   - Dog
+  - EventTrigger
   layers:
   - Default
   - TransparentFX

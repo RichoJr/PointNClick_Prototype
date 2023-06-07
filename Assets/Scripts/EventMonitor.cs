@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EventMonitor : MonoBehaviour
 {
-    TriggerEntered trigEnter;
     public int eventCounter = 0;
     public bool humanEvent;
     public bool dogEvent;
+    public bool cantPlay;
+
+    [Header("Triggers")]
+    public List<TriggerEntered> eventTriggers = new List<TriggerEntered>();
 
     [Header("Events")]
     public List<GameEvents> HumanEvents = new List<GameEvents>();
@@ -16,41 +20,69 @@ public class EventMonitor : MonoBehaviour
     public List<GameEvents> MultiEvents = new List<GameEvents>();
     public List<GameEvents> ActionPointEvents = new List<GameEvents>();
 
-    private void Update()
+    public void EventChecker(TriggerEntered trigEnter)
     {
-        EventChecker();
-    }
-    public void EventChecker()
-    {
-        //eventCounter = trigEnter.characterEvent;
-        
-        if (eventCounter == 1)
+        if (eventTriggers.Contains(trigEnter))
         {
-            humanEvent = true;
-            dogEvent = false;
-            for (int i = 0; i < HumanEvents.Count; i++)
+            eventCounter = trigEnter.characterEvent;
+
+            if (eventCounter == 1)
             {
-                if (HumanEvents[i] == trigEnter.gameEvent)
+                for (int i = 0; i < HumanEvents.Count; i++)
                 {
-                    Debug.Log(trigEnter.gameEvent);
+                    if (HumanEvents[i] == trigEnter.gameEvent)
+                    {
+                        Debug.Log("Event: " + trigEnter.gameEvent);
+                        humanEvent = true;
+                        dogEvent = false;
+                        cantPlay = false;
+                    }
+                    else
+                    {
+                        cantPlay = true;
+                    }
                 }
             }
-        }
-        else if (eventCounter == 2)
-        {
-            dogEvent = true;
-            humanEvent = false;
-        }
-        else if (eventCounter == 3)
-        {
-            humanEvent = true;
-            dogEvent = true;
-        }
-        else
-        {
-            humanEvent = false;
-            dogEvent = false;
-            Debug.Log("Nothing");
-        }
+            else if (eventCounter == 2)
+            {
+                for (int i = 0; i < DogEvents.Count; i++)
+                {
+                    if (DogEvents[i] == trigEnter.gameEvent)
+                    {
+                        Debug.Log("Event: " + trigEnter.gameEvent);
+                        dogEvent = true;
+                        humanEvent = false;
+                        cantPlay = false;
+                    }
+                    else
+                    {
+                        cantPlay = true;
+                    }
+                }
+            }
+            else if (eventCounter == 3)
+            {
+                for (int i = 0; i < MultiEvents.Count; i++)
+                {
+                    if (MultiEvents[i] == trigEnter.gameEvent)
+                    {
+                        Debug.Log("Event: " + trigEnter.gameEvent);
+                        humanEvent = true;
+                        dogEvent = true;
+                        cantPlay = false;
+                    }
+                    else
+                    {
+                        cantPlay = true;
+                    }
+                }
+            }
+            else
+            {
+                humanEvent = false;
+                dogEvent = false;
+                Debug.Log("Nothing");
+            }
+        }  
     }
 }
