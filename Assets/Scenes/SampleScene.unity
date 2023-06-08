@@ -246,7 +246,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24218
+  m_Name: pb_Mesh24250
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -517,7 +517,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23890
+  m_Name: pb_Mesh23908
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2350,7 +2350,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23932
+  m_Name: pb_Mesh23950
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3742,8 +3742,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3799,6 +3799,12 @@ MonoBehaviour:
   dogNav: {fileID: 292304693}
   humanUI: {fileID: 324431768}
   dogUI: {fileID: 71835905}
+  dragingSpeed: 250
+  humanObject: {fileID: 1267558485}
+  dogObject: {fileID: 292304688}
+  zoomSpeed: 300
+  minXRot: {x: -0.000000028097148, y: 0.76604426, z: -0.6427878, w: -0.00000003348486}
+  maxXRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &970903108
 GameObject:
   m_ObjectHideFlags: 0
