@@ -27,23 +27,6 @@ public class CharacterController : MonoBehaviour
     public GameObject humanUI;
     public GameObject dogUI;
 
-    //These are all for right click, which controls moving the camera around the screen.
-    public float dragingSpeed = 250f;
-
-    public GameObject humanObject;
-    public GameObject dogObject;
-
-    public float zoomSpeed = 147.5f;
-
-    [Header("Camera Rotation Transforms")]
-    [Tooltip("Used to set the minimum x rotation value. Keep Y 180 and Z 0.")]
-    public Quaternion minXRot;
-    public Quaternion maxXRot;
-
-    private void Start()
-    {
-        maxXRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, 0f);
-    }
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition); // This cast a ray from the mouse to the 3D environment in the game. Getting the mouse postion in the world.
@@ -100,51 +83,6 @@ public class CharacterController : MonoBehaviour
                         }
                     }
                 }
-            }
-        }
-        if (Input.GetKey(KeyCode.Mouse1))
-        {
-            Vector3 camPostion = new Vector3();
-            camPostion.x = Input.GetAxis("Mouse X") * dragingSpeed * Time.deltaTime;
-            camPostion.y = Input.GetAxis("Mouse Y") * dragingSpeed * Time.deltaTime;
-            Camera.main.transform.Translate(-camPostion);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (humanSelected == true)
-            {
-                Camera.main.transform.position = new Vector3(humanObject.transform.position.x, transform.position.y, humanObject.transform.position.z);
-            }
-            if(dogSelected == true)
-            {
-                Camera.main.transform.position = new Vector3(dogObject.transform.position.x, transform.position.y, dogObject.transform.position.z);
-            }
-        }
-        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            if(Camera.main.orthographicSize < 10f)
-            {
-                Camera.main.transform.Rotate(Vector3.right * zoomSpeed * Time.deltaTime);
-                Camera.main.orthographicSize += 0.25f;
-            }
-            else
-            {
-                Camera.main.transform.rotation = maxXRot;
-                Camera.main.orthographicSize = 10f;
-            }
-
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            if (Camera.main.orthographicSize > 5f)
-            {
-                Camera.main.orthographicSize -= 0.25f;
-                Camera.main.transform.Rotate(Vector3.left * zoomSpeed * Time.deltaTime);
-            }
-            else
-            {
-                Camera.main.transform.rotation = minXRot;
-                Camera.main.orthographicSize = 5f;
             }
         }
     }

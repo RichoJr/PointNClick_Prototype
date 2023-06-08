@@ -3701,6 +3701,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -3767,11 +3768,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.38003433, y: 20, z: 2.3818996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.21337917, y: 56.085728, z: 0.7302984}
+  m_LocalScale: {x: 1.3333333, y: 0.74074084, z: 2.8571434}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1102884728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!114 &963194229
@@ -3799,12 +3800,25 @@ MonoBehaviour:
   dogNav: {fileID: 292304693}
   humanUI: {fileID: 324431768}
   dogUI: {fileID: 71835905}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc44f0d9016148c438122646060b6e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   dragingSpeed: 250
   humanObject: {fileID: 1267558485}
   dogObject: {fileID: 292304688}
-  zoomSpeed: 300
-  minXRot: {x: -0.000000028097148, y: 0.76604426, z: -0.6427878, w: -0.00000003348486}
+  zoomSpeed: 147.5
+  minXRot: {x: -0.000000026609808, y: 0.7933533, z: -0.6087614, w: -0.000000034678575}
   maxXRot: {x: 0, y: 0, z: 0, w: 0}
+  charCon: {fileID: 963194229}
 --- !u!1 &970903108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5580,6 +5594,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097029908}
   m_CullTransparentMesh: 1
+--- !u!1 &1102884727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102884728}
+  m_Layer: 0
+  m_Name: Camera Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102884728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102884727}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.21999994, y: 0.36999702, z: 1.3959968}
+  m_LocalScale: {x: 0.75000006, y: 0.34999996, z: 1.3499999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 963194228}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107471253
 GameObject:
   m_ObjectHideFlags: 0
