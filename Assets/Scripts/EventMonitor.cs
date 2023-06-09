@@ -21,7 +21,6 @@ public class EventMonitor : MonoBehaviour
     public List<GameEvents> HumanEvents = new List<GameEvents>();
     public List<GameEvents> DogEvents = new List<GameEvents>();
     public List<GameEvents> MultiEvents = new List<GameEvents>();
-    public List<GameEvents> ActionPointEvents = new List<GameEvents>();
 
     public void EventChecker(TriggerEntered trigEnter)
     {

@@ -30,7 +30,6 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition); // This cast a ray from the mouse to the 3D environment in the game. Getting the mouse postion in the world.
-       
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (Physics.Raycast(ray, out rayHit, rayLength, maskCheck))

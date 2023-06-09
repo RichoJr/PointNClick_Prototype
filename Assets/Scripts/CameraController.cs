@@ -18,10 +18,6 @@ public class CameraController : MonoBehaviour
     public Quaternion maxXRot;
 
     public CharacterController charCon;
-
-    Quaternion currentRotation;
-    Quaternion pastRotation;
-
     private void Start()
     {
         maxXRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, 0f);
@@ -52,10 +48,7 @@ public class CameraController : MonoBehaviour
             if (Camera.main.orthographicSize < 9.75f)
             {
                 Camera.main.orthographicSize += 0.25f;
-                Vector3 camRotation = new Vector3();
-                camRotation.x = Camera.main.orthographicSize / 10f;
-                Camera.main.transform.Rotate(camRotation);
-                //Camera.main.transform.Rotate(Vector3.right * Camera.main.orthographicSize / 10f);
+                Camera.main.transform.Rotate(Vector3.right * Camera.main.orthographicSize / 10f);
             }
             else
             {
@@ -77,21 +70,21 @@ public class CameraController : MonoBehaviour
                 Camera.main.orthographicSize = 5f;
             }
         }
-        if (Input.GetKey(KeyCode.E))
-        {
-            //Camera.main.transform.Rotate(Vector3.forward * dragingSpeed * Time.deltaTime);
-
-            Vector3 camRotation = new Vector3();
-            camRotation.z = -dragingSpeed * Time.deltaTime;
-            Camera.main.transform.Rotate(-camRotation);
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            //Camera.main.transform.Rotate(Vector3.back * dragingSpeed * Time.deltaTime);
-
-            Vector3 camRotation = new Vector3();
-            camRotation.z = dragingSpeed * Time.deltaTime;
-            Camera.main.transform.Rotate(-camRotation);
-        }
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    //Camera.main.transform.Rotate(Vector3.forward * dragingSpeed * Time.deltaTime);
+        //
+        //    Vector3 camRotation = new Vector3();
+        //    camRotation.z = -dragingSpeed * Time.deltaTime;
+        //    Camera.main.transform.Rotate(-camRotation);
+        //}
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    //Camera.main.transform.Rotate(Vector3.back * dragingSpeed * Time.deltaTime);
+        //
+        //    Vector3 camRotation = new Vector3();
+        //    camRotation.z = dragingSpeed * Time.deltaTime;
+        //    Camera.main.transform.Rotate(-camRotation);
+        //}
     }
 }
