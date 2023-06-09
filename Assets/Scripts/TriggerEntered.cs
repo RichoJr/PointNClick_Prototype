@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class TriggerEntered : MonoBehaviour
 {
+    [Tooltip("ID:       0 = Human     1 = Dog     2 = Both")]
+    [Range(0f, 2f)]
     public int triggerID;
     public int amountCheck = 0;
     public int characterEvent = 0;

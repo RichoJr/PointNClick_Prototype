@@ -12,7 +12,6 @@ public class PointManager : MonoBehaviour
     public float dogAP = 5;
     public float result;
    
-    bool eventSuccessful = true;
     bool humanAlive = true;
     bool dogAlive = true;
 
@@ -31,6 +30,7 @@ public class PointManager : MonoBehaviour
     public Slider dogAPSlider;
 
     public EventMonitor eventMon;
+    public EventResult eventResults;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,7 +80,7 @@ public class PointManager : MonoBehaviour
         if (humanAP > 0 && eventMon.humanEvent == true)
         {
             humanAP--;
-            if (eventSuccessful == true)
+            if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
                 humanLP = humanLP + 10;
@@ -98,7 +98,7 @@ public class PointManager : MonoBehaviour
         if (dogAP > 0 && eventMon.dogEvent == true)
         {
             dogAP--;
-            if (eventSuccessful == true)
+            if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
                 dogLP = dogLP + 10;

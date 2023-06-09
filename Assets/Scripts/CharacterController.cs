@@ -59,7 +59,6 @@ public class CharacterController : MonoBehaviour
                         if(Physics.Raycast(ray, out rayHit))
                         {
                             humanNav.SetDestination(rayHit.point);
-                            Debug.Log("rayhit is now: " + rayHit.point);
                             if(humanNav.destination == rayHit.point)
                             {
                                 dogNav.enabled = false;
@@ -73,7 +72,6 @@ public class CharacterController : MonoBehaviour
                         if (Physics.Raycast(ray, out rayHit))
                         {
                             dogNav.SetDestination(rayHit.point);
-                            Debug.Log("rayhit is now: " + rayHit.point);
                             if (dogNav.destination == rayHit.point)
                             {
                                 humanNav.enabled = false;

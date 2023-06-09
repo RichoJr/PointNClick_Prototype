@@ -9,10 +9,9 @@ public class CustomGameEvent : UnityEvent<Component, object> { }
 
 public class EventListener : MonoBehaviour
 {
+    public bool eventOn;
     public GameEvents gameEvent; // This variable references the GameEvents script.
     public CustomGameEvent feedBack; // This variable holds the data from the CustomGameEvent class, which includes the function and gameObject.
-
-    public bool eventOn;
 
     // This function adds this listner script to the listener list
     private void OnEnable()
