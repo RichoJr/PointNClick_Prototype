@@ -24,12 +24,10 @@ public class TriggerEntered : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered trigger");
         if(triggerID == 0)
         {
             if(other.gameObject.CompareTag("Human"))
             {
-                Debug.Log("Human has entered zone");
                 characterEvent = 1;
                 StartEvent();
             }
@@ -38,7 +36,6 @@ public class TriggerEntered : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Dog"))
             {
-                Debug.Log("Dog has entered zone");
                 characterEvent = 2;
                 StartEvent();
 
@@ -59,7 +56,6 @@ public class TriggerEntered : MonoBehaviour
             }
             if (amountCheck == 2)
             {
-                Debug.Log("Both Human and Dog have entered zone");
                 humanEntered = false;
                 dogEntered = false;
                 amountCheck = 0;
@@ -68,13 +64,11 @@ public class TriggerEntered : MonoBehaviour
             }
         }
         //eventMon.eventCounter = characterEvent;
-        Debug.Log("character Event is : " + characterEvent);
     }
 
     private void OnTriggerExit()
     {
         //characterEvent = 0;
-        Debug.Log(characterEvent);
     }
     
     public void StartEvent()

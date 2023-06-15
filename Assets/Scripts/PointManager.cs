@@ -83,13 +83,13 @@ public class PointManager : MonoBehaviour
             if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
-                humanLP = humanLP + 10;
-                // if(/*Action Points Given*/ == true)
-                // {
-                //     humanAP++;
-                // }
+                humanLP = eventResults.givenLP;
+                if(eventResults.restEvent.eventDifficulty == 3)
+                {
+                    humanAP++;
+                }
             }
-            else
+            if (eventResults.eventLost == true)
             {
                 eventResultText.text = "Event Unsuccessful";
             }
@@ -101,14 +101,15 @@ public class PointManager : MonoBehaviour
             if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
-                dogLP = dogLP + 10;
-                //if (/*Action Points Given*/ == true)
-                //{
-                //    dogAP++;
-                //}
+                dogLP = eventResults.givenLP;
+                if (eventResults.restEvent.eventDifficulty == 3)
+                {
+                    dogAP++;
+                }
             }
-            else
+            if(eventResults.eventLost == true)
             {
+                Debug.Log("Lost");
                 eventResultText.text = "Event Unsuccessful";
             }
             eventMon.dogEvent = false;

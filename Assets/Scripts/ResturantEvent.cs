@@ -10,12 +10,15 @@ public class ResturantEvent : MonoBehaviour
     [Range(1f, 3f)]
     public int eventDifficulty;
 
+    public bool success;
+    public bool massiveFail;
+
     public NavMeshAgent npcChef;
 
     public TriggerEntered trigEntSight;
     public TriggerEntered trigEntCaught;
 
-    public GameEvents caughtDog;
+    public EventResult eventResult;
 
     void Start()
     {
@@ -29,9 +32,8 @@ public class ResturantEvent : MonoBehaviour
             npcChef.SetDestination(trigEntSight.dogNav.transform.position);
             if(trigEntCaught.characterEvent == 2)
             {
-                caughtDog.Raise(this, null);
+                eventResult.EventUnsuccessful();
             }
-            
         }
     }
 }
