@@ -12,6 +12,7 @@ public class ResturantEvent : MonoBehaviour
 
     public bool success;
     public bool massiveFail;
+    public bool sightEventStart;
 
     public NavMeshAgent npcChef;
 
@@ -19,21 +20,43 @@ public class ResturantEvent : MonoBehaviour
     public TriggerEntered trigEntCaught;
 
     public EventResult eventResult;
+    public PointManager pointManager;
+    public EventBeign eventBegan;
 
-    void Start()
-    {
-        
-    }
+    public GameObject startPosition;
+
+    Transform lastSeenPos;
 
     void Update()
     {
-        if(trigEntSight.characterEvent == 2)
+        EventOneBegin();  
+    }
+    public void EventOneBegin()
+    {
+        if (trigEntSight.characterEvent == 2)
         {
+            sightEventStart = true;
+            lastSeenPos = trigEntSight.dogNav.GetComponent<Transform>();
             npcChef.SetDestination(trigEntSight.dogNav.transform.position);
-            if(trigEntCaught.characterEvent == 2)
+            if (trigEntCaught.characterEvent == 2)
             {
+                npcChef.SetDestination(lastSeenPos.transform.position);
+                eventBegan.dogEntered = false;
                 eventResult.EventUnsuccessful();
             }
         }
+        if (sightEventStart == true)
+        {
+            if (trigEntSight.characterEvent == 0)
+            {
+                sightEventStart = false;
+                StartCoroutine(SightTimer());
+            }
+        }
+    }
+    IEnumerator SightTimer()
+    {
+        yield return new WaitForSeconds(3f);
+        npcChef.SetDestination(startPosition.transform.position); 
     }
 }

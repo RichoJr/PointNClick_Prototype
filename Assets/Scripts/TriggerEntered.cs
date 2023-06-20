@@ -68,7 +68,7 @@ public class TriggerEntered : MonoBehaviour
 
     private void OnTriggerExit()
     {
-        //characterEvent = 0;
+        characterEvent = 0;
     }
     
     public void StartEvent()

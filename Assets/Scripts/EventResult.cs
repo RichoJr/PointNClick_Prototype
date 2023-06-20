@@ -13,7 +13,8 @@ public class EventResult : MonoBehaviour
     List<EventHolder> eventHolder = new List<EventHolder>();
 
     public ResturantEvent restEvent;
-    
+
+    public PointManager pointManager;
 
     public bool eventWon;
     public bool eventLost;
@@ -37,6 +38,7 @@ public class EventResult : MonoBehaviour
     public void EventUnsuccessful()
     {
         eventLost = true;
+        pointManager.eventResultText.text = "Event Unsuccessful";
     }
     public void ResturantEventStats()
     {

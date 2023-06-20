@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class PointManager : MonoBehaviour
 {
     public float humanLP = 100;
@@ -79,7 +79,7 @@ public class PointManager : MonoBehaviour
     {
         if (humanAP > 0 && eventMon.humanEvent == true)
         {
-            humanAP--;
+            //humanAP--;
             if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
@@ -97,7 +97,6 @@ public class PointManager : MonoBehaviour
         }
         if (dogAP > 0 && eventMon.dogEvent == true)
         {
-            dogAP--;
             if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
@@ -107,10 +106,9 @@ public class PointManager : MonoBehaviour
                     dogAP++;
                 }
             }
-            if(eventResults.eventLost == true)
+            if (eventResults.eventLost == true)
             {
                 Debug.Log("Lost");
-                eventResultText.text = "Event Unsuccessful";
             }
             eventMon.dogEvent = false;
         }
