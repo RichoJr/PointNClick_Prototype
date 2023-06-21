@@ -9,6 +9,7 @@ public class TriggerEntered : MonoBehaviour
     [Tooltip("ID:       0 = Human     1 = Dog     2 = Both")]
     [Range(0f, 2f)]
     public int triggerID;
+
     public int amountCheck = 0;
     public int characterEvent = 0;
     bool humanEntered = false;
@@ -29,6 +30,7 @@ public class TriggerEntered : MonoBehaviour
             if(other.gameObject.CompareTag("Human"))
             {
                 characterEvent = 1;
+                Debug.Log(characterEvent);
                 StartEvent();
             }
         }
@@ -37,8 +39,8 @@ public class TriggerEntered : MonoBehaviour
             if (other.gameObject.CompareTag("Dog"))
             {
                 characterEvent = 2;
+                Debug.Log(characterEvent);
                 StartEvent();
-
             }
         }
         if (triggerID == 2)

@@ -14,6 +14,8 @@ public class EventMonitor : MonoBehaviour
 
     public Text eventNameText;
 
+    public ResturantEvent restEvent;
+
     [Header("Triggers")]
     public List<TriggerEntered> eventTriggers = new List<TriggerEntered>();
 
@@ -21,7 +23,6 @@ public class EventMonitor : MonoBehaviour
     public List<GameEvents> HumanEvents = new List<GameEvents>();
     public List<GameEvents> DogEvents = new List<GameEvents>();
     public List<GameEvents> MultiEvents = new List<GameEvents>();
-
     public void EventChecker(TriggerEntered trigEnter)
     {
         if (eventTriggers.Contains(trigEnter))

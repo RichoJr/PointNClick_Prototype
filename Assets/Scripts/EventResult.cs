@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Rendering;
 using Random = System.Random;
 public class EventResult : MonoBehaviour
@@ -15,6 +16,11 @@ public class EventResult : MonoBehaviour
     public ResturantEvent restEvent;
 
     public PointManager pointManager;
+
+    public GameObject human;
+    public GameObject dog;
+    public GameObject humanStartPos;
+    public GameObject dogStartPos;
 
     public bool eventWon;
     public bool eventLost;
@@ -42,6 +48,7 @@ public class EventResult : MonoBehaviour
     }
     public void ResturantEventStats()
     {
+        Debug.Log("In Here");
         if(restEvent.success == true)
         {
             Random randomLPs = new Random();
@@ -62,8 +69,18 @@ public class EventResult : MonoBehaviour
             }
             givenLP = randomLPs.Next(minLP, maxLP);
             Debug.Log("MinLP: " + minLP + " MaxLP: " + maxLP + " GivenLP: " + givenLP);
-            on = false;
+            restEvent.success = false;
         }
+    }
+    public void ResetDog()
+    {
+        dog.transform.position = dogStartPos.transform.position;
+        dog.GetComponent<NavMeshAgent>().SetDestination(dogStartPos.transform.position);
+    }
+    public void ResetHuman()
+    {
+        human.transform.position = humanStartPos.transform.position;
+        human.GetComponent<NavMeshAgent>().SetDestination(humanStartPos.transform.position);
     }
     // 1st method needs to be further worked on. It would allow for new event scripts to be created then add without any new code.
     /*public bool eventWon;

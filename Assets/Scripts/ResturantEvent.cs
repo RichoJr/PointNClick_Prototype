@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,28 +10,46 @@ public class ResturantEvent : MonoBehaviour
     [Tooltip("ID:   1 = Easy    2 = Moderate    3 = Hard")]
     [Range(1f, 3f)]
     public int eventDifficulty;
+    public int eventItems;
 
     public bool success;
     public bool massiveFail;
     public bool sightEventStart;
+    public bool resetItem;
 
     public NavMeshAgent npcChef;
 
     public TriggerEntered trigEntSight;
     public TriggerEntered trigEntCaught;
+    public TriggerEntered trigHumanConvo;
 
     public EventResult eventResult;
     public PointManager pointManager;
     public EventBeign eventBegan;
+    public EventMonitor eventMonitor;
 
+    public GameObject itemText;
     public GameObject startPosition;
+    public GameObject doorStandPos;
+    public GameObject chefConvoPos;
+    public List<GameObject> itemsToBeCollected;
 
     Transform lastSeenPos;
 
+    [System.Obsolete]
     void Update()
     {
-        EventOneBegin();  
+        if (itemText.active == true)
+        {
+            StartCoroutine(TextDisplayTime());
+        }
+        if (eventBegan.eventActive == true)
+        {
+            EventOneBegin();
+        }
     }
+
+    [System.Obsolete]
     public void EventOneBegin()
     {
         if (trigEntSight.characterEvent == 2)
@@ -40,9 +59,12 @@ public class ResturantEvent : MonoBehaviour
             npcChef.SetDestination(trigEntSight.dogNav.transform.position);
             if (trigEntCaught.characterEvent == 2)
             {
-                npcChef.SetDestination(lastSeenPos.transform.position);
+                npcChef.gameObject.SetActive(false);
                 eventBegan.dogEntered = false;
+                ResetEvent();
                 eventResult.EventUnsuccessful();
+                eventResult.ResetDog();
+                npcChef.gameObject.SetActive(true);
             }
         }
         if (sightEventStart == true)
@@ -53,10 +75,50 @@ public class ResturantEvent : MonoBehaviour
                 StartCoroutine(SightTimer());
             }
         }
+        if(eventItems == itemsToBeCollected.Count)
+        {
+            success = true;
+            eventResult.EventSuccessful();
+        }
+    }
+    IEnumerator TextDisplayTime()
+    {
+        yield return new WaitForSeconds(2f);
+        itemText.SetActive(false);
     }
     IEnumerator SightTimer()
     {
         yield return new WaitForSeconds(3f);
         npcChef.SetDestination(startPosition.transform.position); 
+    }
+    public void ResetEvent()
+    {
+        //resetItem = true;
+        npcChef.transform.position = startPosition.transform.position;
+        for (int i = 0; i < itemsToBeCollected.Count; i++)
+        {
+            itemsToBeCollected[i].SetActive(true);
+        }
+        eventItems = 0;
+        //resetItem = false;
+    }
+
+    public void ItemCollected()
+    {
+        eventItems++;
+    }
+    public void Conversation()
+    {
+        trigHumanConvo.humanNav.SetDestination(doorStandPos.transform.position);
+        npcChef.SetDestination(chefConvoPos.transform.position);
+        StartCoroutine(ConvoTime());
+    }
+
+    IEnumerator ConvoTime()
+    {
+        Debug.Log("waiting");
+        yield return new WaitForSeconds(15f);
+        Debug.Log("TimeDone");
+        npcChef.SetDestination(startPosition.transform.position);
     }
 }

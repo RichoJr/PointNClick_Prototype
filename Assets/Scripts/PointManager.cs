@@ -79,11 +79,10 @@ public class PointManager : MonoBehaviour
     {
         if (humanAP > 0 && eventMon.humanEvent == true)
         {
-            //humanAP--;
             if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
-                humanLP = eventResults.givenLP;
+                humanLP = humanLP + eventResults.givenLP;
                 if(eventResults.restEvent.eventDifficulty == 3)
                 {
                     humanAP++;
@@ -97,10 +96,11 @@ public class PointManager : MonoBehaviour
         }
         if (dogAP > 0 && eventMon.dogEvent == true)
         {
+            Debug.Log(eventMon.dogEvent);
             if (eventResults.eventWon == true)
             {
                 eventResultText.text = "Event Successful";
-                dogLP = eventResults.givenLP;
+                dogLP = dogLP + eventResults.givenLP;
                 if (eventResults.restEvent.eventDifficulty == 3)
                 {
                     dogAP++;
