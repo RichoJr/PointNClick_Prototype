@@ -44,11 +44,9 @@ public class EventResult : MonoBehaviour
     public void EventUnsuccessful()
     {
         eventLost = true;
-        pointManager.eventResultText.text = "Event Unsuccessful";
     }
     public void ResturantEventStats()
     {
-        Debug.Log("In Here");
         if(restEvent.success == true)
         {
             Random randomLPs = new Random();
@@ -69,7 +67,6 @@ public class EventResult : MonoBehaviour
             }
             givenLP = randomLPs.Next(minLP, maxLP);
             Debug.Log("MinLP: " + minLP + " MaxLP: " + maxLP + " GivenLP: " + givenLP);
-            restEvent.success = false;
         }
     }
     public void ResetDog()

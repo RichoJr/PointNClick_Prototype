@@ -37,7 +37,6 @@ public class EventMonitor : MonoBehaviour
                     {
                         Debug.Log("Event: " + trigEnter.gameEvent);
                         humanEvent = true;
-                        dogEvent = false;
                         cantPlay = false;
                         eventNameText.text = trigEnter.gameEvent.name;
                     }
@@ -55,7 +54,6 @@ public class EventMonitor : MonoBehaviour
                     {
                         Debug.Log("Event: " + trigEnter.gameEvent);
                         dogEvent = true;
-                        humanEvent = false;
                         cantPlay = false;
                         eventNameText.text = trigEnter.gameEvent.name;
                     }

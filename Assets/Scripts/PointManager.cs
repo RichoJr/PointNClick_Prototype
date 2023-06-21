@@ -14,6 +14,8 @@ public class PointManager : MonoBehaviour
    
     bool humanAlive = true;
     bool dogAlive = true;
+    bool victory;
+    bool lose;
 
     public GameObject human;
     public GameObject dog;
@@ -42,6 +44,8 @@ public class PointManager : MonoBehaviour
     {
         ChangeUI();
         LifePoints();
+        victory = eventResults.eventWon;
+        lose = eventResults.eventLost;
     }
 
     IEnumerator PointTimer()
@@ -79,38 +83,43 @@ public class PointManager : MonoBehaviour
     {
         if (humanAP > 0 && eventMon.humanEvent == true)
         {
-            if (eventResults.eventWon == true)
+            if (victory == true)
             {
+                Debug.Log("Victory");
                 eventResultText.text = "Event Successful";
                 humanLP = humanLP + eventResults.givenLP;
                 if(eventResults.restEvent.eventDifficulty == 3)
                 {
                     humanAP++;
                 }
+                eventMon.humanEvent = false;
             }
-            if (eventResults.eventLost == true)
+            if (lose == true)
             {
                 eventResultText.text = "Event Unsuccessful";
+                eventMon.humanEvent = false;
             }
-            eventMon.humanEvent = false;
+            
         }
         if (dogAP > 0 && eventMon.dogEvent == true)
         {
-            Debug.Log(eventMon.dogEvent);
-            if (eventResults.eventWon == true)
+            if (victory == true)
             {
+                Debug.Log("Victory");
                 eventResultText.text = "Event Successful";
                 dogLP = dogLP + eventResults.givenLP;
                 if (eventResults.restEvent.eventDifficulty == 3)
                 {
                     dogAP++;
                 }
+                eventMon.dogEvent = false;
             }
-            if (eventResults.eventLost == true)
+            if (lose == true)
             {
                 Debug.Log("Lost");
+                eventResultText.text = "Event Unsuccessful";
+                eventMon.dogEvent = false;
             }
-            eventMon.dogEvent = false;
         }
         //else
         //{

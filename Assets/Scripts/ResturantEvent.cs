@@ -32,6 +32,7 @@ public class ResturantEvent : MonoBehaviour
     public GameObject startPosition;
     public GameObject doorStandPos;
     public GameObject chefConvoPos;
+    public GameObject dogEventStarter;
     public List<GameObject> itemsToBeCollected;
 
     Transform lastSeenPos;
@@ -78,7 +79,11 @@ public class ResturantEvent : MonoBehaviour
         if(eventItems == itemsToBeCollected.Count)
         {
             success = true;
+            dogEventStarter.GetComponent<Collider>().enabled = false;
+            trigHumanConvo.gameObject.GetComponent<Collider>().enabled = false;
             eventResult.EventSuccessful();
+            eventItems++;
+            success = false;
         }
     }
     IEnumerator TextDisplayTime()

@@ -24,4 +24,19 @@ public class EventBeign : MonoBehaviour
             eventActive = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Human" && humanEntered == true)
+        { 
+            humanEntered = false;
+            eventActive = false;
+        }
+        if (other.gameObject.tag == "Dog" && dogEntered == true)
+        {
+            pointManager.dogAP--;
+            dogEntered = false;
+            eventActive = false;
+        }
+    }
 }
