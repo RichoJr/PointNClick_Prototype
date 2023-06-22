@@ -39,8 +39,11 @@ public class PointManager : MonoBehaviour
     public Slider dogAPSlider;
 
     //These are references for other scripts, so their information can be used in this script
+    //eventMon is used to grab the humanEvent and dogEvent bools
     public EventMonitor eventMon;
+    //eventResults is used to get the difficulty level of each puzzle and the eventWon and eventLost bools
     public EventResult eventResults;
+    //resting is used to grab the humanResting and dogResting bools
     public Resting resting;
 
     //Everything in the Start Function is done once when the game launches
@@ -118,7 +121,7 @@ public class PointManager : MonoBehaviour
                         humanAP++;
                     }
                 }
-                //These bools are returned to there respected scripts, so the code doesn't infinitely repeat itself
+                //These bools are returned to their respected scripts, so the code doesn't infinitely repeat itself
                 eventMon.humanEvent = false;
                 eventResults.eventWon = false;
             }
