@@ -4,6 +4,8 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
+using UnityEngine.ProBuilder;
 
 public class ResturantEvent : MonoBehaviour
 {
@@ -33,6 +35,7 @@ public class ResturantEvent : MonoBehaviour
     public GameObject doorStandPos;
     public GameObject chefConvoPos;
     public GameObject dogEventStarter;
+    public GameObject chefGameObject;
     public List<GameObject> itemsToBeCollected;
 
     public GameEvents dogResetEvent;
@@ -102,7 +105,7 @@ public class ResturantEvent : MonoBehaviour
     IEnumerator SightTimer()
     {
         yield return new WaitForSeconds(1f);
-        npcChef.SetDestination(startPosition.transform.position); 
+        npcChef.SetDestination(startPosition.transform.position);
     }
     public void ResetEvent()
     {
