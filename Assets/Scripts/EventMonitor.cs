@@ -35,7 +35,6 @@ public class EventMonitor : MonoBehaviour
                 {
                     if (HumanEvents[i] == trigEnter.gameEvent)
                     {
-                        Debug.Log("Event: " + trigEnter.gameEvent);
                         humanEvent = true;
                         cantPlay = false;
                         eventNameText.text = trigEnter.gameEvent.name;
@@ -52,7 +51,6 @@ public class EventMonitor : MonoBehaviour
                 {
                     if (DogEvents[i] == trigEnter.gameEvent)
                     {
-                        Debug.Log("Event: " + trigEnter.gameEvent);
                         dogEvent = true;
                         cantPlay = false;
                         eventNameText.text = trigEnter.gameEvent.name;
@@ -69,7 +67,6 @@ public class EventMonitor : MonoBehaviour
                 {
                     if (MultiEvents[i] == trigEnter.gameEvent)
                     {
-                        Debug.Log("Event: " + trigEnter.gameEvent);
                         humanEvent = true;
                         dogEvent = true;
                         cantPlay = false;

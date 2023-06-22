@@ -17,6 +17,8 @@ public class EventResult : MonoBehaviour
 
     public PointManager pointManager;
 
+    public CharacterController charCon;
+
     public GameObject human;
     public GameObject dog;
     public GameObject humanStartPos;
@@ -71,14 +73,19 @@ public class EventResult : MonoBehaviour
     }
     public void ResetDog()
     {
+        dog.GetComponent<NavMeshAgent>().areaMask = NavMesh.AllAreas;
         dog.transform.position = dogStartPos.transform.position;
         dog.GetComponent<NavMeshAgent>().SetDestination(dogStartPos.transform.position);
+        dog.GetComponent<NavMeshAgent>().areaMask = 15;
     }
     public void ResetHuman()
     {
+        human.GetComponent<NavMeshAgent>().areaMask = NavMesh.AllAreas;
         human.transform.position = humanStartPos.transform.position;
         human.GetComponent<NavMeshAgent>().SetDestination(humanStartPos.transform.position);
+        human.GetComponent<NavMeshAgent>().areaMask = 23;
     }
+
     // 1st method needs to be further worked on. It would allow for new event scripts to be created then add without any new code.
     /*public bool eventWon;
       public bool eventLost;

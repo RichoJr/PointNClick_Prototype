@@ -9,20 +9,32 @@ public class EventBeign : MonoBehaviour
     public bool humanEntered;
     public bool dogEntered;
     public bool eventActive;
+
+    public bool eventClosed;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Human" && humanEntered == false)
+        if(eventClosed == false)
         {
-            pointManager.humanAP--;
-            humanEntered = true;
-            eventActive = true;
+            if (other.gameObject.tag == "Human" && humanEntered == false)
+            {
+                if(pointManager.humanAP > 0)
+                {
+                    pointManager.humanAP--;
+                    humanEntered = true;
+                    eventActive = true;
+                }
+            }
+            if (other.gameObject.tag == "Dog" && dogEntered == false)
+            {
+                if (pointManager.dogAP > 0)
+                {
+                    pointManager.dogAP--;
+                    dogEntered = true;
+                    eventActive = true;
+                }
+            }
         }
-        if(other.gameObject.tag == "Dog" && dogEntered == false)
-        {
-            pointManager.dogAP--;
-            dogEntered = true;
-            eventActive = true;
-        }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -34,7 +46,6 @@ public class EventBeign : MonoBehaviour
         }
         if (other.gameObject.tag == "Dog" && dogEntered == true)
         {
-            pointManager.dogAP--;
             dogEntered = false;
             eventActive = false;
         }

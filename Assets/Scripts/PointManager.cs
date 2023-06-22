@@ -85,7 +85,6 @@ public class PointManager : MonoBehaviour
         {
             if (victory == true)
             {
-                Debug.Log("Victory");
                 eventResultText.text = "Event Successful";
                 humanLP = humanLP + eventResults.givenLP;
                 if(eventResults.restEvent.eventDifficulty == 3)
@@ -93,11 +92,13 @@ public class PointManager : MonoBehaviour
                     humanAP++;
                 }
                 eventMon.humanEvent = false;
+                eventResults.eventWon = false;
             }
             if (lose == true)
             {
                 eventResultText.text = "Event Unsuccessful";
                 eventMon.humanEvent = false;
+                eventResults.eventLost = false;
             }
             
         }
@@ -105,7 +106,6 @@ public class PointManager : MonoBehaviour
         {
             if (victory == true)
             {
-                Debug.Log("Victory");
                 eventResultText.text = "Event Successful";
                 dogLP = dogLP + eventResults.givenLP;
                 if (eventResults.restEvent.eventDifficulty == 3)
@@ -113,12 +113,13 @@ public class PointManager : MonoBehaviour
                     dogAP++;
                 }
                 eventMon.dogEvent = false;
+                eventResults.eventWon = false;
             }
             if (lose == true)
             {
-                Debug.Log("Lost");
                 eventResultText.text = "Event Unsuccessful";
                 eventMon.dogEvent = false;
+                eventResults.eventLost = false;
             }
         }
         //else

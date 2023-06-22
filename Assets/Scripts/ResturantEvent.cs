@@ -15,7 +15,7 @@ public class ResturantEvent : MonoBehaviour
     public bool success;
     public bool massiveFail;
     public bool sightEventStart;
-    public bool resetItem;
+    public bool reset;
 
     public NavMeshAgent npcChef;
 
@@ -35,6 +35,8 @@ public class ResturantEvent : MonoBehaviour
     public GameObject dogEventStarter;
     public List<GameObject> itemsToBeCollected;
 
+    public GameEvents dogResetEvent;
+
     Transform lastSeenPos;
 
     [System.Obsolete]
@@ -53,38 +55,44 @@ public class ResturantEvent : MonoBehaviour
     [System.Obsolete]
     public void EventOneBegin()
     {
-        if (trigEntSight.characterEvent == 2)
+        if (reset == false)
         {
-            sightEventStart = true;
-            lastSeenPos = trigEntSight.dogNav.GetComponent<Transform>();
-            npcChef.SetDestination(trigEntSight.dogNav.transform.position);
-            if (trigEntCaught.characterEvent == 2)
+            if (trigEntSight.characterEvent == 2)
             {
-                npcChef.gameObject.SetActive(false);
-                eventBegan.dogEntered = false;
-                ResetEvent();
-                eventResult.EventUnsuccessful();
-                eventResult.ResetDog();
-                npcChef.gameObject.SetActive(true);
+                sightEventStart = true;
+                lastSeenPos = trigEntSight.dogNav.GetComponent<Transform>();
+                npcChef.SetDestination(trigEntSight.dogNav.transform.position);
+                if (trigEntCaught.characterEvent == 2)
+                {
+                    npcChef.gameObject.SetActive(false);
+                    eventBegan.dogEntered = false;
+                    ResetEvent();
+                    eventResult.EventUnsuccessful();
+                    dogResetEvent.Raise(this, null);
+                    npcChef.gameObject.SetActive(true);
+                    trigEntCaught.characterEvent = 0;
+                    trigEntSight.characterEvent = 0;
+                }
+            }
+            if (sightEventStart == true)
+            {
+                if (trigEntSight.characterEvent == 0)
+                {
+                    sightEventStart = false;
+                    StartCoroutine(SightTimer());
+                }
+            }
+            if (eventItems == itemsToBeCollected.Count)
+            {
+                success = true;
+                dogEventStarter.GetComponent<EventBeign>().eventClosed = true;
+                trigHumanConvo.gameObject.GetComponent<EventBeign>().eventClosed = true;
+                eventResult.EventSuccessful();
+                eventItems++;
+                success = false;
             }
         }
-        if (sightEventStart == true)
-        {
-            if (trigEntSight.characterEvent == 0)
-            {
-                sightEventStart = false;
-                StartCoroutine(SightTimer());
-            }
-        }
-        if(eventItems == itemsToBeCollected.Count)
-        {
-            success = true;
-            dogEventStarter.GetComponent<Collider>().enabled = false;
-            trigHumanConvo.gameObject.GetComponent<Collider>().enabled = false;
-            eventResult.EventSuccessful();
-            eventItems++;
-            success = false;
-        }
+        reset = false;
     }
     IEnumerator TextDisplayTime()
     {
@@ -93,19 +101,18 @@ public class ResturantEvent : MonoBehaviour
     }
     IEnumerator SightTimer()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         npcChef.SetDestination(startPosition.transform.position); 
     }
     public void ResetEvent()
     {
-        //resetItem = true;
+        reset = true;
         npcChef.transform.position = startPosition.transform.position;
         for (int i = 0; i < itemsToBeCollected.Count; i++)
         {
             itemsToBeCollected[i].SetActive(true);
         }
         eventItems = 0;
-        //resetItem = false;
     }
 
     public void ItemCollected()
@@ -122,7 +129,7 @@ public class ResturantEvent : MonoBehaviour
     IEnumerator ConvoTime()
     {
         Debug.Log("waiting");
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(10f);
         Debug.Log("TimeDone");
         npcChef.SetDestination(startPosition.transform.position);
     }

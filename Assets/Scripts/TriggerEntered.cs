@@ -18,6 +18,8 @@ public class TriggerEntered : MonoBehaviour
     public NavMeshAgent humanNav;
     public NavMeshAgent dogNav;
 
+    public PointManager pointManager;
+
     [Header("Event")]
     public GameEvents gameEvent;
 
@@ -29,8 +31,10 @@ public class TriggerEntered : MonoBehaviour
         {
             if(other.gameObject.CompareTag("Human"))
             {
-                characterEvent = 1;
-                Debug.Log(characterEvent);
+                if(pointManager.humanAP > 0)
+                {
+                    characterEvent = 1;
+                }
                 StartEvent();
             }
         }
@@ -38,8 +42,10 @@ public class TriggerEntered : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Dog"))
             {
-                characterEvent = 2;
-                Debug.Log(characterEvent);
+                if(pointManager.dogAP > 0)
+                {
+                    characterEvent = 2;
+                }
                 StartEvent();
             }
         }
@@ -48,13 +54,19 @@ public class TriggerEntered : MonoBehaviour
             
             if (other.gameObject.CompareTag("Human") && humanEntered == false)
             {
-                amountCheck++;
-                humanEntered = true;
+                if(pointManager.humanAP > 0)
+                {
+                    amountCheck++;
+                    humanEntered = true;
+                }
             }
             if (other.gameObject.CompareTag("Dog") && dogEntered == false)
             {
-                amountCheck++;
-                dogEntered = true;
+                if (pointManager.dogAP > 0)
+                {
+                    amountCheck++;
+                    dogEntered = true;
+                }
             }
             if (amountCheck == 2)
             {
